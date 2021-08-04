@@ -7,7 +7,7 @@ export default function HomePageStandings() {
   
   useEffect(function() {
     async function getStanding() {
-      const standing = await footballService.getAll();
+      const standing = await footballService.getStandings();
       setStandings(standing.standings[0].table);
     }
     getStanding();
@@ -19,38 +19,39 @@ export default function HomePageStandings() {
   
     return (
         <div className="homePageStandings">
-        <h1>Standings</h1>
-            <table>
+          <div className="homePageStandingsContainer">
+            <h2>Premier League Standings</h2>
+            <table className="table table-sm">
                 <tr>
-                    <th></th>
-                    <th className="teamName">Club</th>
-                    <th></th>
-                    <th>MP</th>
-                    <th>GF</th>
-                    <th>GA</th>
-                    <th>GD</th>
-                    <th>Won</th>
-                    <th>Draw</th>
-                    <th>Lost</th>
-                    <th>Points</th>
+                    <th scope="col"></th>
+                    <th scope="col" className="teamName">Club</th>
+                    <th scope="col"></th>
+                    <th scope="col">MP</th>
+                    <th scope="col">W</th>
+                    <th scope="col">D</th>
+                    <th scope="col">L</th>
+                    <th scope="col">GF</th>
+                    <th scope="col">GA</th>
+                    <th scope="col">GD</th>
+                    <th scope="col">Points</th>
                 </tr>
                 {standings.map(team => 
                 <tr>
                     <td>{team.position}</td>
-                    <td><img src={team.team.crestUrl}/></td>
+                    <td className="teamImg"><img src={team.team.crestUrl}/></td>
                     <td className="teamName">{removeFC(team.team.name)}</td>
-                    <td>{team.playedGames}</td>
-                    <td>{team.goalsFor}</td>
-                    <td>{team.goalsAgainst}</td>
-                    <td>{team.goalDifference}</td>
-                    <td>{team.won}</td>
-                    <td>{team.lost}</td>
-                    <td>{team.draw}</td>
-                    <td>{team.points}</td>
+                    <td className="teamNumbers">{team.playedGames}</td>
+                    <td className="teamNumbers">{team.goalsFor}</td>
+                    <td className="teamNumbers">{team.goalsAgainst}</td>
+                    <td className="teamNumbers">{team.goalDifference}</td>
+                    <td className="teamNumbers">{team.won}</td>
+                    <td className="teamNumbers">{team.lost}</td>
+                    <td className="teamNumbers">{team.draw}</td>
+                    <td className="teamNumbers">{team.points}</td>
                 </tr>
                 )}
             </table>
-        
+            </div> 
         </div>
   );
 }

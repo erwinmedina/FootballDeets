@@ -1,0 +1,34 @@
+.homePageMatches {
+    width: 100%;
+    height: 90vh;
+    overflow: scroll;
+}
+.matchBox {
+    border: solid 1px black;
+    border-radius: 15px;
+    background: white;
+    width: 100%;
+    margin: 10px 0;
+    padding: 0 10px 20px 10px;
+}
+.matchBoxTop {
+    display: flex;
+    justify-content: space-between;
+}
+.matchBoxBottom {
+    max-width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.matchBoxBottom p{
+    width: 20%;
+    min-width: 50px;
+}
+.matchBoxBottom p:first-child{
+    min-width: 100px;
+}
+.matchBoxBottom p:last-child{
+    min-width: 100px;
+}

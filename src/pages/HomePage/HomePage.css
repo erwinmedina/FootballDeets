@@ -1,0 +1,12 @@
+.homepage {
+    margin: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+.leftHandHP {
+    width: 50%;
+    display: flex;
+}
+.rightHandHP {
+    width: 50%;
+}

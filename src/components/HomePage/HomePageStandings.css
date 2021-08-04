@@ -1,6 +1,32 @@
-td img {
+.homePageStandings {
+    width: 100%;
+    height: 90vh;
+    overflow: scroll;
+}
+
+.homePageStandings h2 {
+    font-size: 20px;
+    background: rgba(255,255,255,.8);
+    border-radius: 10px 10px 0 0;
+    margin: 0;
+    padding: 5px;
+}
+tr img {
     height: 30px;
-    width: 30px;
+}
+.table {
+    height: 40%;
+    border-radius: 0 0 10px 10px;
+    background: white;
+}
+.table td, .table th {
+    vertical-align: middle;
+}
+.teamNumbers {
+    width: 40px;
+}
+.teamImg {
+    text-align: left;
 }
 
 .teamName {
