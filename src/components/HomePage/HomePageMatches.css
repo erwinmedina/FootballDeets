@@ -9,26 +9,42 @@
     background: white;
     width: 100%;
     margin: 10px 0;
-    padding: 0 10px 20px 10px;
+    padding: 0;
 }
 .matchBoxTop {
     display: flex;
+    color: rgba(0,0,0,.5);
+    background: rgba(0,0,0,.2);
+    border-radius: 15px 15px 0 0;
+    padding: 10px;
+    margin: 0;
     justify-content: space-between;
 }
+p {
+    margin-bottom: 0;
+}
 .matchBoxBottom {
+    padding: 20px 10px 20px 10px;
+    height: 80%;
     max-width: 50%;
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
-.matchBoxBottom p{
+/* .matchBoxBottom p{
     width: 20%;
-    min-width: 50px;
+    min-width: 80px;
+    margin-bottom: 0;
+
 }
 .matchBoxBottom p:first-child{
-    min-width: 100px;
+    min-width: 150px;
+    font-size: 20px;
+
 }
 .matchBoxBottom p:last-child{
-    min-width: 100px;
-}
+    min-width: 150px;
+    font-size: 20px;
+
+} */

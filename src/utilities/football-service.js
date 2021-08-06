@@ -15,3 +15,11 @@ export function getMatches() {
         .then((res) => {return res.json()})
         .catch(error => console.log('Error while fetching:', error))
 }
+
+export function getTeams() {
+    return fetch(`${BASE_URL}/competitions/2021/teams`, {
+        headers: { 'X-Auth-Token': process.env.REACT_APP_FOOTBALL_API },
+    })
+        .then((res) => {return res.json()})
+        .catch(error => console.log('Error while fetching:', error))
+}

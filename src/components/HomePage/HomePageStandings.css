@@ -14,6 +14,16 @@
 tr img {
     height: 30px;
 }
+tr:nth-child(n+2):nth-child(-n+5) {
+    background: rgb(121, 249, 121);
+}
+tr:nth-child(6) {
+    background: orange;
+}
+tr:nth-last-child(-n+3) {
+    background: red;
+    color: white;
+}
 .table {
     height: 40%;
     border-radius: 0 0 10px 10px;
