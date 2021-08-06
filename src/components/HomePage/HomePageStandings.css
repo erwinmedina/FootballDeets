@@ -1,7 +1,16 @@
 .homePageStandings {
     width: 100%;
+    overflow: auto;
+}
+.homePageStandingsContainer {
+    /* border: 1px solid black; */
     height: 90vh;
-    overflow: scroll;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: rgba(255,255,255,.7);
+    overflow: auto;
+
 }
 
 .homePageStandings h2 {
@@ -24,10 +33,15 @@ tr:nth-last-child(-n+3) {
     background: red;
     color: white;
 }
+.table tr {
+    border-radius: 0 0 10px 10px;
+}
 .table {
-    height: 40%;
+    /* height: 40%; */
     border-radius: 0 0 10px 10px;
     background: white;
+    margin-bottom: 0;
+    max-height: 90vh;
 }
 .table td, .table th {
     vertical-align: middle;
@@ -41,4 +55,13 @@ tr:nth-last-child(-n+3) {
 
 .teamName {
     text-align: left;
+}
+.table tr {
+    padding: 0 10px;
+}
+.HPReverse {
+    height: 1px;
+    background: rgba(255,255,255,.8);
+    border-radius: 0 0 10px 10px !important;
+    margin: 0;
 }

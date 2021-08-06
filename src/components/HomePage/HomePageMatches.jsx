@@ -25,6 +25,31 @@ export default function HomePageMatches({filter, setFilter}) {
     function removeFC(string) {
         return string = string.substring(0, string.length-3);
     }
+    function timeConvert(string) {
+        let daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        let monthsOfYear = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        let d = new Date(string);
+        let dateInfo = daysOfWeek[d.getUTCDay()] + ' ' +  monthsOfYear[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear();
+        
+        let ms = d.getTime();
+        let hours = Math.floor((ms / 1000 / 3600) % 24);
+        let minutes = Math.floor((ms / 1000 / 60) % 60);
+        if (minutes === 0) {
+            minutes = minutes.toString();
+            minutes = '00';
+        }
+        
+        hours = hours.toString();
+        let gameTime;
+        if (hours < 19) {
+            gameTime = hours-7+":"+minutes + 'am';
+        } else {
+            gameTime = hours-7+":"+minutes + 'pm';
+        }
+
+        let dateAndTime = dateInfo + ' - ' + gameTime + ' PST';
+        return dateAndTime;
+    }
 
     function handleChange(event) {
         setMatchday(parseInt(event.target.value));
@@ -61,7 +86,7 @@ export default function HomePageMatches({filter, setFilter}) {
                             ))}
                         </select>
                     </div>
-                    <div onClick={handleMatchButton} className={`${filter === 'match' ? 'btn-success' : 'btn-primary'} btn btn-primary`}>Matches</div>
+                    <div onClick={handleMatchButton} className={`${filter === 'match' ? 'btn-success' : 'btn-primary'} btn btn-primary`}>Matchday</div>
                     <div onClick={handleTeamButton} className={`${filter === 'team' ? 'btn-success' : 'btn-primary'} btn btn-primary`}>Team</div>
             </div>
                     
@@ -70,7 +95,7 @@ export default function HomePageMatches({filter, setFilter}) {
                         <div className="matchBox container">
                             <div className="matchBoxTop">
                                 <p>Matchday {match.matchday}</p>
-                                <p>{match.utcDate}</p>
+                                <p>{timeConvert(match.utcDate)}</p>
                             </div>
                             <div className="matchBoxBottom">
                                 {teamArray && teamArray.map(logo => (
@@ -81,9 +106,9 @@ export default function HomePageMatches({filter, setFilter}) {
                                 ))}
                                 <p className="HPteamName">{removeFC(match.homeTeam.name)}</p>
                                 <div className="HPScore">
-                                    <p>{match.score.fullTime.homeTeam}0</p>
+                                    <p>{match.score.fullTime.homeTeam}</p>
                                     <p>vs</p>
-                                    <p>{match.score.fullTime.awayTeam}0</p>
+                                    <p>{match.score.fullTime.awayTeam}</p>
                                 </div>
                                 <p className="HPteamName">{removeFC(match.awayTeam.name)}</p>
                                 {teamArray && teamArray.map(logo => (
