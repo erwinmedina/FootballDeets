@@ -51,7 +51,7 @@ export default function HomePageMatches({filter, setFilter}) {
 
     useEffect(function() {
         async function getAllMatches() {
-            const match = await footballService.getMatches();
+            const match = await footballService.getMatches(2021);
             const filtered = match.matches.filter(item => (
                 item.homeTeam.name === team || item.awayTeam.name === team
             ))
@@ -62,7 +62,7 @@ export default function HomePageMatches({filter, setFilter}) {
 
     useEffect(function() {
         async function getTeams() {
-            const allTeams = await footballService.getTeams();
+            const allTeams = await footballService.getTeams(2021);
             allTeams.teams.sort((a,b) => a.shortName > b.shortName ? 1:-1);
             setTeamArray(allTeams.teams);   
             setTeam(allTeams.teams[0].name);
@@ -74,19 +74,17 @@ export default function HomePageMatches({filter, setFilter}) {
     return (
         <div className="homePageTeams">
             <div className="homePageTeamsContainer container">
-            <div className="leftHandHPContainer">
-                <div className="form-group">
-                    <select className="custom-select" onChange={handleChange} name="matchday" id="matchday">
-                        {teamArray && teamArray.map(team => (
-                            <option value={team.name}>{team.shortName}</option>
-                        ))}
-                    </select>
+                <div className="leftHandHPContainer">
+                    <div className="form-group">
+                        <select className="custom-select" onChange={handleChange} name="matchday" id="matchday">
+                            {teamArray && teamArray.map(team => (
+                                <option value={team.name}>{team.shortName}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div onClick={handleMatchButton} className={`${filter === 'match' ? 'btn-success' : 'btn-primary'} btn`}>Matchday</div>
+                    <div onClick={handleTeamButton} className={`${filter === 'team' ? 'btn-success' : 'btn-primary'} btn`}>Team</div>
                 </div>
-                <div onClick={handleMatchButton} className={`${filter === 'match' ? 'btn-success' : 'btn-primary'} btn`}>Matchday</div>
-                <div onClick={handleTeamButton} className={`${filter === 'team' ? 'btn-success' : 'btn-primary'} btn`}>Team</div>
-            </div>
-
-                
 
                 {matches && matches.map(match => (
                     <div className="matchBox container">

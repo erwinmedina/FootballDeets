@@ -6,6 +6,7 @@ export default function HomePageMatches({filter, setFilter}) {
     const [matchday, setMatchday] = useState(1);
     const [matches, setMatches] = useState([]);
     const [teamArray, setTeamArray] = useState();
+    const [matchArray, setMatchArray] = useState([]);
   
     function handleMatchButton() {
       setFilter('match');
@@ -13,14 +14,6 @@ export default function HomePageMatches({filter, setFilter}) {
     function handleTeamButton() {
       setFilter('team');
     }
-    let matchArray = [];
-    
-    function matchdayCreator() {
-        for (let i = 1; i < 39; i++) {
-            matchArray.push(i);
-        }
-    }
-    matchdayCreator();
 
     function removeFC(string) {
         return string = string.substring(0, string.length-3);
@@ -57,24 +50,27 @@ export default function HomePageMatches({filter, setFilter}) {
 
     useEffect(function() {
         async function getAllMatches() {
-            const match = await footballService.getMatches();
+            const match = await footballService.getMatches(2021);
             const filtered = match.matches.filter(item => (
                 item.matchday === matchday
             ))
             setMatches(filtered);
         }
         getAllMatches();
-        },[matchday])
+    },[matchday])
 
     useEffect(function() {
         async function getTeams() {
-            const allTeams = await footballService.getTeams();
+            const allTeams = await footballService.getTeams(2021);
             allTeams.teams.sort((a,b) => a.name > b.name ? 1:-1);
             setTeamArray(allTeams.teams);
+            for (let i = 1; i <= (allTeams.count * 2 - 2); i++) {
+                setMatchArray(matchArray => [...matchArray, i])
+            }
         }
         getTeams()
     }, [])
-    
+
         return (
             <div className="homePageMatches">
                 <div className="homePageMatchesContainer container">
@@ -88,7 +84,7 @@ export default function HomePageMatches({filter, setFilter}) {
                     </div>
                     <div onClick={handleMatchButton} className={`${filter === 'match' ? 'btn-success' : 'btn-primary'} btn btn-primary`}>Matchday</div>
                     <div onClick={handleTeamButton} className={`${filter === 'team' ? 'btn-success' : 'btn-primary'} btn btn-primary`}>Team</div>
-            </div>
+                </div>
                     
 
                     {matches && matches.map(match => (

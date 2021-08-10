@@ -10,19 +10,20 @@ import './App.css';
 
 export default function App() {
   const [user, setUser] = useState(getUser());
+  const [id, setId] = useState(2021);
   
   return (
     <main className="App">
         <>
-          <NavBar user={user} setUser={setUser} />
+          <NavBar user={user} setUser={setUser} setId={setId}/>
           <Switch>
             <Route path="/orders/new">
               <NewOrderPage />
             </Route>
-            <Route path="/home">
-              <HomePage />
+            <Route path="/">
+              <HomePage id={id}/>
             </Route>
-            <Redirect to="/home" />
+            {/* <Redirect to="/home" /> */}
           </Switch>
         </>
         {/* <AuthPage setUser={setUser} /> */}

@@ -1,9 +1,9 @@
 .homePageStandings {
+    margin-top: 10px;
     width: 100%;
     overflow: auto;
 }
 .homePageStandingsContainer {
-    /* border: 1px solid black; */
     height: 90vh;
     border-radius: 10px;
     margin-bottom: 10px;
@@ -32,12 +32,20 @@ tr:nth-child(6) {
 tr:nth-last-child(-n+3) {
     background: red;
     color: white;
+    border-radius: 20px;
 }
+tr:last-child td:first-child { 
+    border-bottom-left-radius: 10px; 
+}
+
+tr:last-child td:last-child { 
+    border-bottom-right-radius: 10px; 
+}
+
 .table tr {
     border-radius: 0 0 10px 10px;
 }
 .table {
-    /* height: 40%; */
     border-radius: 0 0 10px 10px;
     background: white;
     margin-bottom: 0;
@@ -58,10 +66,4 @@ tr:nth-last-child(-n+3) {
 }
 .table tr {
     padding: 0 10px;
-}
-.HPReverse {
-    height: 1px;
-    background: rgba(255,255,255,.8);
-    border-radius: 0 0 10px 10px !important;
-    margin: 0;
 }

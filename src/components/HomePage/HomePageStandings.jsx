@@ -7,7 +7,7 @@ export default function HomePageStandings() {
   
   useEffect(function() {
     async function getStanding() {
-      const standing = await footballService.getStandings();
+      const standing = await footballService.getStandings(2021);
       setStandings(standing.standings[0].table);
     }
     getStanding();
