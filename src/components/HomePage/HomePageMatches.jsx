@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react';
-import * as footballService from "../../utilities/football-service"
 import "./HomePageMatches.css";
 
-export default function HomePageMatches({filter, setFilter}) {
-    const [matchday, setMatchday] = useState(1);
-    const [matches, setMatches] = useState([]);
-    const [teamArray, setTeamArray] = useState();
-    const [matchArray, setMatchArray] = useState([]);
+export default function HomePageMatches({filter, setFilter, matches, teamArray, matchArray, setMatchday}) {
   
     function handleMatchButton() {
       setFilter('match');
@@ -15,9 +10,6 @@ export default function HomePageMatches({filter, setFilter}) {
       setFilter('team');
     }
 
-    function removeFC(string) {
-        return string = string.substring(0, string.length-3);
-    }
     function timeConvert(string) {
         let daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         let monthsOfYear = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -48,29 +40,6 @@ export default function HomePageMatches({filter, setFilter}) {
         setMatchday(parseInt(event.target.value));
     }
 
-    useEffect(function() {
-        async function getAllMatches() {
-            const match = await footballService.getMatches(2021);
-            const filtered = match.matches.filter(item => (
-                item.matchday === matchday
-            ))
-            setMatches(filtered);
-        }
-        getAllMatches();
-    },[matchday])
-
-    useEffect(function() {
-        async function getTeams() {
-            const allTeams = await footballService.getTeams(2021);
-            allTeams.teams.sort((a,b) => a.name > b.name ? 1:-1);
-            setTeamArray(allTeams.teams);
-            for (let i = 1; i <= (allTeams.count * 2 - 2); i++) {
-                setMatchArray(matchArray => [...matchArray, i])
-            }
-        }
-        getTeams()
-    }, [])
-
         return (
             <div className="homePageMatches">
                 <div className="homePageMatchesContainer container">
@@ -100,13 +69,13 @@ export default function HomePageMatches({filter, setFilter}) {
                                         :
                                         ''
                                 ))}
-                                <p className="HPteamName">{removeFC(match.homeTeam.name)}</p>
+                                <p className="HPteamName">{match.homeTeam.name}</p>
                                 <div className="HPScore">
                                     <p>{match.score.fullTime.homeTeam}</p>
                                     <p>vs</p>
                                     <p>{match.score.fullTime.awayTeam}</p>
                                 </div>
-                                <p className="HPteamName">{removeFC(match.awayTeam.name)}</p>
+                                <p className="HPteamName">{match.awayTeam.name}</p>
                                 {teamArray && teamArray.map(logo => (
                                     logo.name === match.awayTeam.name ? 
                                         <img className="HPTeamsCrest" src={logo.crestUrl} alt="" />

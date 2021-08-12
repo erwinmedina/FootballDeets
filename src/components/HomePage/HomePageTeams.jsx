@@ -3,20 +3,13 @@ import { useEffect, useState } from 'react';
 import * as footballService from "../../utilities/football-service"
 import "./HomePageTeams.css";
 
-export default function HomePageMatches({filter, setFilter}) {
-    const [matches, setMatches] = useState([]);
-    const [teamArray, setTeamArray] = useState();
-    const [team, setTeam] = useState();
+export default function HomePageMatches({filter, setFilter, matches, teamArray, setTeam }) {
   
     function handleMatchButton() {
       setFilter('match');
     }
     function handleTeamButton() {
       setFilter('team');
-    }
-
-    function removeFC(string) {
-        return string = string.substring(0, string.length-3);
     }
     function timeConvert(string) {
         let daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -49,28 +42,6 @@ export default function HomePageMatches({filter, setFilter}) {
         setTeam(event.target.value);
     }
 
-    useEffect(function() {
-        async function getAllMatches() {
-            const match = await footballService.getMatches(2021);
-            const filtered = match.matches.filter(item => (
-                item.homeTeam.name === team || item.awayTeam.name === team
-            ))
-            setMatches(filtered);
-        }
-        getAllMatches();
-    },[team])
-
-    useEffect(function() {
-        async function getTeams() {
-            const allTeams = await footballService.getTeams(2021);
-            allTeams.teams.sort((a,b) => a.shortName > b.shortName ? 1:-1);
-            setTeamArray(allTeams.teams);   
-            setTeam(allTeams.teams[0].name);
-            console.log(allTeams.teams);
-        }
-        getTeams()
-    }, [])
-
     return (
         <div className="homePageTeams">
             <div className="homePageTeamsContainer container">
@@ -99,13 +70,13 @@ export default function HomePageMatches({filter, setFilter}) {
                                     :
                                     ''
                             ))}
-                            <p className="HPteamName">{removeFC(match.homeTeam.name)}</p>
+                            <p className="HPteamName">{match.homeTeam.name}</p>
                             <div className="HPScore">
                                 <p>{match.score.fullTime.homeTeam}</p>
                                 <p>vs</p>
                                 <p>{match.score.fullTime.awayTeam}</p>
                             </div>
-                            <p className="HPteamName">{removeFC(match.awayTeam.name)}</p>
+                            <p className="HPteamName">{match.awayTeam.name}</p>
                             {teamArray && teamArray.map(logo => (
                                 logo.name === match.awayTeam.name ? 
                                     <img className="HPTeamsCrest" src={logo.crestUrl} alt="" />

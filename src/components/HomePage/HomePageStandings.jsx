@@ -1,22 +1,6 @@
-import { useEffect, useState } from 'react';
-import * as footballService from "../../utilities/football-service"
 import "./HomePageStandings.css";
 
-export default function HomePageStandings() {
-  const [standings, setStandings] = useState([]);
-  
-  useEffect(function() {
-    async function getStanding() {
-      const standing = await footballService.getStandings(2021);
-      setStandings(standing.standings[0].table);
-    }
-    getStanding();
-    },[])
-
-    function removeFC(string) {
-      return string = string.substring(0, string.length-3);
-    }
-  
+export default function HomePageStandings({standings}) {
     return (
         <div className="homePageStandings">
           <div className="homePageStandingsContainer">
@@ -39,7 +23,7 @@ export default function HomePageStandings() {
                 <tr>
                     <td>{team.position}</td>
                     <td className="teamImg"><img src={team.team.crestUrl}/></td>
-                    <td className="teamName">{removeFC(team.team.name)}</td>
+                    <td className="teamName">{team.team.name}</td>
                     <td className="teamNumbers">{team.playedGames}</td>
                     <td className="teamNumbers">{team.goalsFor}</td>
                     <td className="teamNumbers">{team.goalsAgainst}</td>
