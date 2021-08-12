@@ -1,9 +1,6 @@
-import { connection } from 'mongoose';
-import { useEffect, useState } from 'react';
-import * as footballService from "../../utilities/football-service"
 import "./HomePageTeams.css";
 
-export default function HomePageMatches({filter, setFilter, matches, teamArray, setTeam }) {
+export default function HomePageTeams({filter, setFilter, matches, teamArray, setTeam }) {
   
     function handleMatchButton() {
       setFilter('match');

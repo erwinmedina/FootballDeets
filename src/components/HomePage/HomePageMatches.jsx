@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import "./HomePageMatches.css";
 
 export default function HomePageMatches({filter, setFilter, matches, teamArray, matchArray, setMatchday}) {

@@ -4,7 +4,7 @@ export default function HomePageStandings({standings}) {
     return (
         <div className="homePageStandings">
           <div className="homePageStandingsContainer">
-            <h2>Premier League Standings</h2>
+            <h2>{Object.keys(standings).length && standings.competition.name} Standings</h2>
             <table className="table table-sm">
                 <tr>
                     <th scope="col"></th>
@@ -19,7 +19,7 @@ export default function HomePageStandings({standings}) {
                     <th scope="col">GD</th>
                     <th scope="col">Points</th>
                 </tr>
-                {standings.map(team => 
+                {Object.keys(standings).length && standings.standings[0].table.map(team => 
                 <tr>
                     <td>{team.position}</td>
                     <td className="teamImg"><img src={team.team.crestUrl}/></td>

@@ -4,30 +4,34 @@ import * as footballService from "../../utilities/football-service"
 import HomePageMatches from "../../components/HomePage/HomePageMatches";
 import HomePageTeams from "../../components/HomePage/HomePageTeams";
 import HomePageStandings from "../../components/HomePage/HomePageStandings";
-
 import "./HomePage.css";
 
 export default function HomePage({ id }) {
   const [filter, setFilter] = useState('match'); // determines if we're filtering by match or team //  
   const [matches, setMatches] = useState([]); // Array of actual matches, team vs team info //
-  const [teamArray, setTeamArray] = useState(); // Array of objects with team info [about 20 items]
-  const [matchArray, setMatchArray] = useState([]); // # of matchdays, array from 1-30x so i can filter //
-  const [matchday, setMatchday] = useState(1); // The Matchday when Filtered //
-  const [standings, setStandings] = useState([]); // Team Standings //
+  const [teamArray, setTeamArray] = useState(); // Array of objects with only team info [about 20 items]
+  const [matchArray, setMatchArray] = useState([]); // # of matchdays, array from 1-30x so i can map //
+  const [matchday, setMatchday] = useState(); // The Matchday when Filtered //
+  const [standings, setStandings] = useState({}); // Team Standings //
   const [team, setTeam] = useState(); // Specific Team when Filtered //
+  const [apiCall, setApiCall] = useState(0);
 
   useEffect(function() {
     async function getStanding() {
       const standing = await footballService.getStandings(id);
+      setApiCall(apiCall+1);
+      setStandings(standing);
+      setMatchday(standing.season.currentMatchday)
 
-      console.log(standing.standings[0].table);
-      setStandings(standing.standings[0].table);
     }
     getStanding();
 
     async function getAllMatches() {
         const match = await footballService.getMatches(id);
+        setApiCall(apiCall+1);
+
         if (filter === 'match') {
+          console.log(match);
           var filtered = match.matches.filter(item => (
               item.matchday === matchday
           ))
@@ -38,11 +42,13 @@ export default function HomePage({ id }) {
           setMatchday(1);
         }
         setMatches(filtered);
+
     }
     getAllMatches();
 
     async function getTeams() {
       const allTeams = await footballService.getTeams(id);
+      setApiCall(apiCall+1);
       allTeams.teams.sort((a,b) => a.name > b.name ? 1:-1);
       setTeamArray(allTeams.teams);
       setTeam(allTeams.teams[0].name);
@@ -53,7 +59,7 @@ export default function HomePage({ id }) {
     }
     getTeams()
 
-  },[matchday, id, filter])
+  },[matchday, id, filter, team])
 
   return (
     <div className="homepage">
