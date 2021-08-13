@@ -14,41 +14,43 @@ export default function HomePage({ id }) {
   const [matchday, setMatchday] = useState(); // The Matchday when Filtered //
   const [standings, setStandings] = useState({}); // Team Standings //
   const [team, setTeam] = useState(); // Specific Team when Filtered //
-  const [apiCall, setApiCall] = useState(0);
+  const [allMatches, setAllMatches] = useState([]);
+
+  useEffect(function() {
+    function filterMatches() {
+      if (allMatches.length && filter === 'match') {
+        console.log("MATCH: ", allMatches);
+        var filtered = allMatches[0].matches.filter(item => (
+          item.matchday === matchday
+        ))
+      } 
+      else if (allMatches.length && filter === 'team') {
+        console.log("TEAM: ", allMatches);
+        var filtered = allMatches[0].matches.filter(item => (
+          item.homeTeam.name === team || item.awayTeam.name === team
+        ))
+      }
+      setMatches(filtered);
+    }
+    filterMatches();
+  }, [allMatches, team, filter, matchday])
 
   useEffect(function() {
     async function getStanding() {
       const standing = await footballService.getStandings(id);
-      setApiCall(apiCall+1);
       setStandings(standing);
       setMatchday(standing.season.currentMatchday)
-
     }
     getStanding();
 
     async function getAllMatches() {
         const match = await footballService.getMatches(id);
-        setApiCall(apiCall+1);
-
-        if (filter === 'match') {
-          console.log(match);
-          var filtered = match.matches.filter(item => (
-              item.matchday === matchday
-          ))
-        } else {
-          var filtered = match.matches.filter(item => (
-            item.homeTeam.name === team || item.awayTeam.name === team
-        ))
-          setMatchday(1);
-        }
-        setMatches(filtered);
-
+        setAllMatches([match]);
     }
     getAllMatches();
 
     async function getTeams() {
       const allTeams = await footballService.getTeams(id);
-      setApiCall(apiCall+1);
       allTeams.teams.sort((a,b) => a.name > b.name ? 1:-1);
       setTeamArray(allTeams.teams);
       setTeam(allTeams.teams[0].name);
@@ -59,7 +61,9 @@ export default function HomePage({ id }) {
     }
     getTeams()
 
-  },[matchday, id, filter, team])
+  },[id])
+
+
 
   return (
     <div className="homepage">

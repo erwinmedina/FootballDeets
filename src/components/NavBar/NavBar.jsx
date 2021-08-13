@@ -3,12 +3,11 @@ import * as userService from '../../utilities/users-service';
 
 export default function NavBar({ user, setUser, setId}) {
   
-  function handleLogOut() {
-    userService.logOut();
-    setUser(null);
-    
-  }
+  // function handleLogOut() {
+  //   userService.logOut();
+  //   setUser(null);
 
+  // }
 
   return (
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
