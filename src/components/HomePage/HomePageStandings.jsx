@@ -21,16 +21,17 @@ export default function HomePageStandings({standings}) {
                 </tr>
                 {Object.keys(standings).length && standings.standings[0].table.map(team => 
                 <tr>
+                    {console.log(team)}
                     <td>{team.position}</td>
                     <td className="teamImg"><img src={team.team.crestUrl}/></td>
                     <td className="teamName">{team.team.name}</td>
                     <td className="teamNumbers">{team.playedGames}</td>
-                    <td className="teamNumbers">{team.goalsFor}</td>
-                    <td className="teamNumbers">{team.goalsAgainst}</td>
-                    <td className="teamNumbers">{team.goalDifference}</td>
                     <td className="teamNumbers">{team.won}</td>
                     <td className="teamNumbers">{team.lost}</td>
                     <td className="teamNumbers">{team.draw}</td>
+                    <td className="teamNumbers">{team.goalsFor}</td>
+                    <td className="teamNumbers">{team.goalsAgainst}</td>
+                    <td className="teamNumbers">{team.goalDifference}</td>
                     <td className="teamNumbers">{team.points}</td>
                 </tr>
                 )}
