@@ -7,10 +7,11 @@ Although this application is mostly a front-end, single paged application, I hop
 
 ## Screenshots
 
-![screenshot 1](/images/1.png)
-![screenshot 2](/images/2.png)
-![screenshot 3](/images/3.png)
-![screenshot 4](/images/4.png)
+![screenshot 1](https://i.imgur.com/OmKGr74.png)<br><br>
+![screenshot 2](https://i.imgur.com/lOVYbcV.png)<br><br>
+![screenshot 3](https://i.imgur.com/NQpCiln.png)<br><br>
+![screenshot 4](https://i.imgur.com/ckiGcvm.png)<br><br>
+![screenshot 5](https://i.imgur.com/8pdGjqZ.png)
 
 ## Technology Used
 
