@@ -15,6 +15,7 @@ export default function HomePage({ id }) {
   const [standings, setStandings] = useState({}); // Team Standings //
   const [team, setTeam] = useState(); // Specific Team when Filtered //
   const [allMatches, setAllMatches] = useState([]);
+  const [everything, setEverything] = useState();
 
   useEffect(function() {
     function filterMatches() {
@@ -46,6 +47,7 @@ export default function HomePage({ id }) {
     async function getAllMatches() {
         const match = await footballService.getMatches(id);
         setAllMatches([match]);
+        console.log(match);
     }
     getAllMatches();
 
@@ -60,6 +62,13 @@ export default function HomePage({ id }) {
       }
     }
     getTeams()
+
+    async function getEverything(){
+      const every = await footballService.getEverything();
+      setEverything(every);
+      console.log(every);
+    }
+    getEverything();
 
   },[id])
 
