@@ -21,7 +21,6 @@ export default function HomePageStandings({standings}) {
                 </tr>
                 {Object.keys(standings).length && standings.standings[0].table.map(team => 
                 <tr>
-                    {console.log(team)}
                     <td>{team.position}</td>
                     <td className="teamImg"><img src={team.team.crestUrl}/></td>
                     <td className="teamName">{team.team.name}</td>
