@@ -21,7 +21,6 @@ Although this application is mostly a front-end, single paged application, I hop
 
 [Click here to get started!](https://footballdeets.herokuapp.com/)
 
-
 ## Icebox Items
 
 - Implement a favorite team for each league.
