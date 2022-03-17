@@ -1,18 +1,17 @@
 .homepage {
-    /* margin: 20px; */
     display: flex;
     justify-content: space-around;
 }
 .leftHandHP {
     height: 90vh;
-    width: 50%;
+    /* width: 50%; */
     max-width: 700px;
     display: flex;
     flex-direction: column;
 }
 .rightHandHP {
     max-width: 900px;
-    width: 50%;
+    /* width: 50%; */
 }
 .leftHandHPContainer {
     position: sticky;
@@ -37,4 +36,13 @@
 .leftHandHPContainer .btn {
     margin: 0 10px;
     width: 100px;
+}
+
+@media screen and (max-width: 1200px) {
+    .homepage {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }

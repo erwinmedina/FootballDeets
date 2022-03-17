@@ -63,7 +63,7 @@ export default function HomePage({ id }) {
     }
     getTeams()
 
-    async function getEverything(){
+    async function getEverything() {
       const every = await footballService.getEverything();
       setEverything(every);
       console.log(every);
