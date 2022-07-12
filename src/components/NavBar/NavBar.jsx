@@ -1,18 +1,17 @@
-import { useState } from 'react';
-import "./NavBar.css";
+import { Link } from 'react-router-dom';
+import * as userService from '../../utilities/users-service';
 
 export default function NavBar({ user, setUser, setId}) {
-  const [hover, setHover] = useState(false);
   
+  // function handleLogOut() {
+  //   userService.logOut();
+  //   setUser(null);
+
+  // }
+
   return (
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a 
-        class="navbar-brand" 
-        href="#"
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-        >{hover ? "F.D." : "FootballDeets"}
-      </a>
+      <a class="navbar-brand" href="#">F.D.</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

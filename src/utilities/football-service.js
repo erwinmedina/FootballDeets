@@ -23,11 +23,3 @@ export function getTeams(id) {
     .then(res => res.json())
     .catch(error => console.log('Error while fetching:', error))
 }
-
-// export function getEverything() {
-//     return fetch(`${BASE_URL}/competitions`, {
-//         headers: { 'X-Auth-Token': process.env.REACT_APP_FOOTBALL_API },
-//     })
-//     .then(res => res.json())
-//     .catch(error => console.log('Error while fetching:', error))
-// }
