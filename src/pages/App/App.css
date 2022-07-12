@@ -3,8 +3,10 @@
 }
 
 body {
-  min-width: fit-content;
+  /* min-width: fit-content; */
+  width: auto;
 }
+
 
 .App-logo {
   height: 40vmin;

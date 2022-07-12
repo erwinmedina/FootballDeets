@@ -19,22 +19,22 @@ export default function NavBar({ user, setUser, setId}) {
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link btn btn-outline-danger" onClick={() => setId(2021)} href="#">Premier League<span class="sr-only">(current)</span></a>
+            <a class="nav-link btn" onClick={() => setId(2021)} href="#">Premier League<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link btn btn-outline-danger" onClick={() => setId(2016)} href="#">Championship<span class="sr-only">(current)</span></a>
+            <a class="nav-link btn" onClick={() => setId(2016)} href="#">Championship<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link btn btn-outline-danger" onClick={() => setId(2014)} href="#">La Liga</a>
+            <a class="nav-link btn" onClick={() => setId(2014)} href="#">La Liga</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link btn btn-outline-danger" onClick={() => setId(2002)} href="#">Bundesliga</a>
+            <a class="nav-link btn" onClick={() => setId(2002)} href="#">Bundesliga</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link btn btn-outline-danger" onClick={() => setId(2019)} href="#">Serie A</a>
+            <a class="nav-link btn" onClick={() => setId(2019)} href="#">Serie A</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link btn btn-outline-danger" onClick={() => setId(2015)} href="#">Ligue 1</a>
+            <a class="nav-link btn" onClick={() => setId(2015)} href="#">Ligue 1</a>
           </li>
         </ul>
       </div>
