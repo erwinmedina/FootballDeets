@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch} from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
-import AuthPage from '../AuthPage/AuthPage';
-import * as footballService from '../../utilities/football-service'
+// import AuthPage from '../AuthPage/AuthPage';
+// import * as footballService from '../../utilities/football-service'
 import NewOrderPage from '../NewOrderPage/NewOrderPage';
 import HomePage from '../HomePage/HomePage'
 import NavBar from '../../components/NavBar/NavBar';

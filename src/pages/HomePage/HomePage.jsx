@@ -15,18 +15,16 @@ export default function HomePage({ id }) {
   const [standings, setStandings] = useState({}); // Team Standings //
   const [team, setTeam] = useState(); // Specific Team when Filtered //
   const [allMatches, setAllMatches] = useState([]);
-  const [everything, setEverything] = useState();
+  // const [everything, setEverything] = useState();
 
   useEffect(function() {
     function filterMatches() {
       if (allMatches.length && filter === 'match') {
-        console.log("MATCH: ", allMatches);
         var filtered = allMatches[0].matches.filter(item => (
           item.matchday === matchday
         ))
       } 
       else if (allMatches.length && filter === 'team') {
-        console.log("TEAM: ", allMatches);
         var filtered = allMatches[0].matches.filter(item => (
           item.homeTeam.name === team || item.awayTeam.name === team
         ))
@@ -47,13 +45,12 @@ export default function HomePage({ id }) {
     async function getAllMatches() {
         const match = await footballService.getMatches(id);
         setAllMatches([match]);
-        console.log(match);
     }
     getAllMatches();
 
     async function getTeams() {
       const allTeams = await footballService.getTeams(id);
-      allTeams.teams.sort((a,b) => a.name > b.name ? 1:-1);
+      // allTeams.teams.sort((a,b) => a.name > b.name ? 1:-1);
       setTeamArray(allTeams.teams);
       setTeam(allTeams.teams[0].name);
       setMatchArray([]);
@@ -63,12 +60,11 @@ export default function HomePage({ id }) {
     }
     getTeams()
 
-    async function getEverything() {
-      const every = await footballService.getEverything();
-      setEverything(every);
-      console.log(every);
-    }
-    getEverything();
+    // async function getEverything() {
+    //   const every = await footballService.getEverything();
+    //   setEverything(every);
+    // }
+    // getEverything();
 
   },[id])
 

@@ -8,6 +8,7 @@ require('./config/database');
 
 const app = express();
 
+
 app.use(logger('dev'));
 app.use(express.json());
 // must be configured to serve from the build folder
